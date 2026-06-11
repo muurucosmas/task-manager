@@ -27,8 +27,13 @@ def main():
                 print("Error:", e)
 
         elif choice == "2":
-            index = int(input("Enter task index: "))
-            mark_task_as_complete(index)
+            # show tasks first
+            view_pending_tasks()
+            try:
+                index = int(input("Enter task number: ")) - 1
+                mark_task_as_complete(index)
+            except ValueError:
+                print("Please enter a valid number.")
 
         elif choice == "3":
             view_pending_tasks()

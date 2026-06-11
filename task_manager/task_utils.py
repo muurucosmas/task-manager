@@ -28,13 +28,16 @@ def mark_task_as_complete(index, tasks=tasks):
         print("Invalid task index.")
 
 def view_pending_tasks(tasks=tasks):
+    found = False
     for i, task in enumerate(tasks):
         if not task["completed"]:
-            print(f"{i}: {task['title']} (Due: {task['due_date']})")
+            print(f"{i+1}. {task['title']} (Due: {task['due_date']})")
+            found = True
+    if not found:
+        print("No pending tasks.")
 
 def calculate_progress(tasks=tasks):
     if not tasks:
         return 0
     completed = sum(1 for t in tasks if t["completed"])
-    progress = (completed / len(tasks)) * 100
-    return progress
+    return (completed / len(tasks)) * 100
